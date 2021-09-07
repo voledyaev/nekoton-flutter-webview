@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/account_interaction.dart';
 import '../models/request_permissions_input.dart';
 import '../models/request_permissions_output.dart';

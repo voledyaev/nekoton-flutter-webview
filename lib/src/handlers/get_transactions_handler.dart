@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/account_status.dart';
 import '../models/get_transactions_input.dart';
 import '../models/get_transactions_output.dart';

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/account_status.dart';
 import '../models/message.dart';
 import '../models/send_message_input.dart';

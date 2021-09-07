@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/extract_public_key_input.dart';
 import '../models/extract_public_key_output.dart';
 

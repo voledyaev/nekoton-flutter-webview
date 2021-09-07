@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/account_interaction.dart';
 import '../models/contract_updates_subscription.dart';
 import '../models/get_provider_state_output.dart';

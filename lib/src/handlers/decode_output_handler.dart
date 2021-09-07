@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/decode_output_input.dart';
 import '../models/decode_output_output.dart';
 

@@ -39,3 +39,7 @@ flutter:
         pluginClass: NekotonFlutterWebviewPlugin
       ios:
         pluginClass: NekotonFlutterWebviewPlugin
+
+  assets:
+    - assets/
+    - assets/js/

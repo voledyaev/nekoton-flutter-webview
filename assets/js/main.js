@@ -5,9 +5,8 @@ const requestPermissions = async (req) => {
     return res;
 };
 
-const disconnect = async (req) => {
-    const res = await requestDart('disconnect', req);
-    return res;
+const disconnect = async () => {
+    await requestDart('disconnect');
 };
 
 const subscribe = async (req) => {
@@ -16,17 +15,15 @@ const subscribe = async (req) => {
 };
 
 const unsubscribe = async (req) => {
-    const res = await requestDart('unsubscribe', req);
-    return res;
+    await requestDart('unsubscribe', req);
 };
 
-const unsubscribeAll = async (req) => {
-    const res = await requestDart('unsubscribeAll', req);
-    return res;
+const unsubscribeAll = async () => {
+    await requestDart('unsubscribeAll');
 };
 
-const getProviderState = async (req) => {
-    const res = await requestDart('getProviderState', req);
+const getProviderState = async () => {
+    const res = await requestDart('getProviderState');
     return res;
 };
 

@@ -44,8 +44,8 @@ class _NekotonWebviewState extends State<NekotonWebview> {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<List<String>>(
-        future: rootBundle.loadString('assets/js/main.js').then((value) async {
-          final value2 = await rootBundle.loadString('assets/js/call.js');
+        future: rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/main.js').then((value) async {
+          final value2 = await rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/call.js');
           return [value, value2];
         }),
         builder: (context, snapshot) {

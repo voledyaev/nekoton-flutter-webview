@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import '../models/full_contract_state.dart';
 import '../models/gen_timings.dart';
 import '../models/get_full_contract_state_input.dart';
