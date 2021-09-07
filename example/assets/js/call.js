@@ -1,49 +1,128 @@
 (async () => {
-    requestPermissions('{json:json}').then((data) => console.log(`JS requestPermissions ${data}`));
+    requestPermissions(JSON.stringify({ permissions: ["tonClient", "accountInteraction"] })).then((data) => console.log(`JS requestPermissions ${data}`));
 
-    disconnect('{json:json}').then((data) => console.log(`JS disconnect ${data}`));
+    disconnect().then((_) => console.log(`JS disconnect`));
 
-    subscribe('{json:json}').then((data) => console.log(`JS subscribe ${data}`));
+    subscribe(JSON.stringify({ address: "address", subscriptions: { state: true, transactions: true } })).then((data) => console.log(`JS subscribe ${data}`));
 
-    unsubscribe('{json:json}').then((data) => console.log(`JS unsubscribe ${data}`));
+    unsubscribe(JSON.stringify({ address: "address" })).then((_) => console.log(`JS unsubscribe`));
 
-    unsubscribeAll('{json:json}').then((data) => console.log(`JS unsubscribeAll ${data}`));
+    unsubscribeAll().then((_) => console.log(`JS unsubscribeAll`));
 
-    getProviderState('{json:json}').then((data) => console.log(`JS getProviderState ${data}`));
+    getProviderState().then((data) => console.log(`JS getProviderState ${data}`));
 
-    getFullContractState('{json:json}').then((data) => console.log(`JS getFullContractState ${data}`));
+    getFullContractState(JSON.stringify({ address: "address" })).then((data) => console.log(`JS getFullContractState ${data}`));
 
-    getTransactions('{json:json}').then((data) => console.log(`JS getTransactions ${data}`));
+    getTransactions(JSON.stringify({
+        address: "address",
+        continuation: {
+            lt: "lt",
+            hash: "hash",
+        },
+        limit: 1,
+    })).then((data) => console.log(`JS getTransactions ${data}`));
 
-    runLocal('{json:json}').then((data) => console.log(`JS runLocal ${data}`));
+    runLocal(JSON.stringify({ address: "address", cachedState: { balance: "balance", genTimings: { genLt: "genLt", genUtime: 0 }, lastTransactionId: { isExact: true, lt: "lt", hash: "hash" }, isDeployed: true, boc: "boc" }, functionCall: { abi: "abi", method: "method", params: { "params": "params" } } })).then((data) => console.log(`JS runLocal ${data}`));
 
-    getExpectedAddress('{json:json}').then((data) => console.log(`JS getExpectedAddress ${data}`));
+    getExpectedAddress(JSON.stringify({ tvc: "tvc", abi: "abi", workchain: 0, publicKey: "publicKey", initParams: { "initParams": "initParams" } })).then((data) => console.log(`JS getExpectedAddress ${data}`));
 
-    packIntoCell('{json:json}').then((data) => console.log(`JS packIntoCell ${data}`));
+    packIntoCell(JSON.stringify({ structure: [{ name: "name", type: "type", components: [{ name: "name", type: "type", components: [] }] }], data: { "data": "data" } })).then((data) => console.log(`JS packIntoCell ${data}`));
 
-    unpackFromCell('{json:json}').then((data) => console.log(`JS unpackFromCell ${data}`));
+    unpackFromCell(JSON.stringify({ structure: [{ name: "name", type: "type", components: [{ name: "name", type: "type", components: [] }] }], boc: "boc", allowPartial: true })).then((data) => console.log(`JS unpackFromCell ${data}`));
 
-    extractPublicKey('{json:json}').then((data) => console.log(`JS extractPublicKey ${data}`));
+    extractPublicKey(JSON.stringify({ boc: "boc" })).then((data) => console.log(`JS extractPublicKey ${data}`));
 
-    codeToTvc('{json:json}').then((data) => console.log(`JS codeToTvc ${data}`));
+    codeToTvc(JSON.stringify({ code: "code" })).then((data) => console.log(`JS codeToTvc ${data}`));
 
-    splitTvc('{json:json}').then((data) => console.log(`JS splitTvc ${data}`));
+    splitTvc(JSON.stringify({ tvc: "tvc" })).then((data) => console.log(`JS splitTvc ${data}`));
 
-    encodeInternalInput('{json:json}').then((data) => console.log(`JS encodeInternalInput ${data}`));
+    encodeInternalInput(JSON.stringify({ abi: "abi", method: "method", params: { "params": "params" } })).then((data) => console.log(`JS encodeInternalInput ${data}`));
 
-    decodeInput('{json:json}').then((data) => console.log(`JS decodeInput ${data}`));
+    decodeInput(JSON.stringify({ body: "body", abi: "abi", method: "method", internal: true })).then((data) => console.log(`JS decodeInput ${data}`));
 
-    decodeEvent('{json:json}').then((data) => console.log(`JS decodeEvent ${data}`));
+    decodeEvent(JSON.stringify({ body: "body", abi: "abi", event: "event" })).then((data) => console.log(`JS decodeEvent ${data}`));
 
-    decodeOutput('{json:json}').then((data) => console.log(`JS decodeOutput ${data}`));
+    decodeOutput(JSON.stringify({ body: "body", abi: "abi", method: "method" })).then((data) => console.log(`JS decodeOutput ${data}`));
 
-    decodeTransaction('{json:json}').then((data) => console.log(`JS decodeTransaction ${data}`));
+    decodeTransaction(JSON.stringify({
+        transaction: {
+            id: {
+                lt: "lt",
+                hash: "hash",
+            },
+            prevTransactionId: {
+                lt: "lt",
+                hash: "hash",
+            },
+            createdAt: 1234,
+            aborted: false,
+            origStatus: 'uninit',
+            endStatus: 'uninit',
+            totalFees: "totalFees",
+            inMessage: {
+                src: "src",
+                dst: "dst",
+                value: "value",
+                bounce: false,
+                bounced: false,
+                body: "body",
+                bodyHash: "bodyHash",
+            },
+            outMessages: [
+                {
+                    src: "src",
+                    dst: "dst",
+                    value: "value",
+                    bounce: false,
+                    bounced: false,
+                    body: "body",
+                    bodyHash: "bodyHash",
+                },
+            ],
+        }, abi: "abi", method: "method"
+    })).then((data) => console.log(`JS decodeTransaction ${data}`));
 
-    decodeTransactionEvents('{json:json}').then((data) => console.log(`JS decodeTransactionEvents ${data}`));
+    decodeTransactionEvents(JSON.stringify({
+        transaction: {
+            id: {
+                lt: "lt",
+                hash: "hash",
+            },
+            prevTransactionId: {
+                lt: "lt",
+                hash: "hash",
+            },
+            createdAt: 1234,
+            aborted: false,
+            origStatus: 'uninit',
+            endStatus: 'uninit',
+            totalFees: "totalFees",
+            inMessage: {
+                src: "src",
+                dst: "dst",
+                value: "value",
+                bounce: false,
+                bounced: false,
+                body: "body",
+                bodyHash: "bodyHash",
+            },
+            outMessages: [
+                {
+                    src: "src",
+                    dst: "dst",
+                    value: "value",
+                    bounce: false,
+                    bounced: false,
+                    body: "body",
+                    bodyHash: "bodyHash",
+                },
+            ],
+        }, abi: "abi"
+    })).then((data) => console.log(`JS decodeTransactionEvents ${data}`));
 
-    estimateFees('{json:json}').then((data) => console.log(`JS estimateFees ${data}`));
+    estimateFees(JSON.stringify({ sender: "sender", recipient: "recipient", amount: "amount", payload: { abi: "abi", method: "method", params: { "params": "params" } } })).then((data) => console.log(`JS estimateFees ${data}`));
 
-    sendMessage('{json:json}').then((data) => console.log(`JS sendMessage ${data}`));
+    sendMessage(JSON.stringify({ sender: "sender", recipient: "recipient", amount: "amount", bounce: true, payload: { abi: "abi", method: "method", params: { "params": "params" } } })).then((data) => console.log(`JS sendMessage ${data}`));
 
-    sendExternalMessage('{json:json}').then((data) => console.log(`JS sendExternalMessage ${data}`));
+    sendExternalMessage(JSON.stringify({ publicKey: "publicKey", recipient: "recipient", stateInit: "stateInit", payload: { abi: "abi", method: "method", params: { "params": "params" } } })).then((data) => console.log(`JS sendExternalMessage ${data}`));
 })()

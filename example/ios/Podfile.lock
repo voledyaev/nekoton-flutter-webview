@@ -10,11 +10,14 @@ PODS:
   - nekoton_flutter_webview (0.0.1):
     - Flutter
   - OrderedSet (5.0.0)
+  - path_provider (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - nekoton_flutter_webview (from `.symlinks/plugins/nekoton_flutter_webview/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
 
 SPEC REPOS:
   trunk:
@@ -27,13 +30,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
   nekoton_flutter_webview:
     :path: ".symlinks/plugins/nekoton_flutter_webview/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   nekoton_flutter_webview: 6f8c9a3ca12f4c4fa5f472f6d4ea34d599fb7b2b
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

@@ -5,3 +5,8 @@
 .pub/
 
 build/
+
+*.g.dart
+*.gr.dart
+*.config.dart
+*.freezed.dart
