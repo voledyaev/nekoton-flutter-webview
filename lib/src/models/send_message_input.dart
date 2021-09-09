@@ -13,7 +13,7 @@ class SendMessageInput with _$SendMessageInput {
     required String recipient,
     required String amount,
     required bool bounce,
-    required FunctionCall? payload,
+    FunctionCall? payload,
   }) = _SendMessageInput;
 
   factory SendMessageInput.fromJson(Map<String, dynamic> json) => _$SendMessageInputFromJson(json);

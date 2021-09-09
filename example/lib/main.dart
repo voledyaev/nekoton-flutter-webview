@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:nekoton_flutter_webview/nekoton_flutter_webview.dart';
 
-Future main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
@@ -29,7 +29,16 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: <Widget>[
                 Expanded(
-                  child: NekotonWebview(),
+                  child: NekotonWebview(
+                    onLoaded: (controller) {
+                      controller.onDisconnected();
+                      controller.onTransactionsFound();
+                      controller.onContractStateChanged();
+                      controller.onNetworkChanged();
+                      controller.onPermissionsChanged();
+                      controller.onLoggedOut();
+                    },
+                  ),
                 ),
               ],
             ),

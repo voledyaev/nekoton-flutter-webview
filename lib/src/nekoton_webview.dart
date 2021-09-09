@@ -1,10 +1,17 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'callers/disconnected_caller.dart';
 
+import 'callers/contract_state_changed_caller.dart';
+import 'callers/logged_out_caller.dart';
+import 'callers/network_changed_caller.dart';
+import 'callers/permissions_changed_caller.dart';
+import 'callers/transactions_found_caller.dart';
 import 'handlers/code_to_tvc_handler.dart';
 import 'handlers/decode_event_handler.dart';
 import 'handlers/decode_input_handler.dart';
@@ -31,23 +38,24 @@ import 'handlers/unsubscribe_all_handler.dart';
 import 'handlers/unsubscribe_handler.dart';
 
 class NekotonWebview extends StatefulWidget {
+  final FutureOr<void> Function(NekotonWebviewController controller) onLoaded;
+
+  const NekotonWebview({
+    Key? key,
+    required this.onLoaded,
+  }) : super(key: key);
+
   @override
   _NekotonWebviewState createState() => _NekotonWebviewState();
 }
 
 class _NekotonWebviewState extends State<NekotonWebview> {
-  final options = InAppWebViewGroupOptions(
-    android: AndroidInAppWebViewOptions(
-      useHybridComposition: true,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) => FutureBuilder<List<String>>(
-        future: rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/main.js').then((value) async {
-          final value2 = await rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/call.js');
-          return [value, value2];
-        }),
+        future: Future.wait<String>([
+          rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/main.js'),
+          rootBundle.loadString('packages/nekoton_flutter_webview/assets/js/call.js'),
+        ]),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return InAppWebView(
@@ -58,7 +66,11 @@ class _NekotonWebviewState extends State<NekotonWebview> {
                   injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
                 ),
               ]),
-              initialOptions: options,
+              initialOptions: InAppWebViewGroupOptions(
+                android: AndroidInAppWebViewOptions(
+                  useHybridComposition: true,
+                ),
+              ),
               onWebViewCreated: (controller) {
                 controller.addJavaScriptHandler(
                   handlerName: 'requestPermissions',
@@ -182,6 +194,10 @@ class _NekotonWebviewState extends State<NekotonWebview> {
               },
               onLoadStop: (controller, url) {
                 controller.evaluateJavascript(source: snapshot.data!.last);
+
+                final nekotonWebviewController = NekotonWebviewController(controller);
+
+                widget.onLoaded(nekotonWebviewController);
               },
               onConsoleMessage: (controller, consoleMessage) {
                 debugPrint(consoleMessage.message);
@@ -192,4 +208,22 @@ class _NekotonWebviewState extends State<NekotonWebview> {
           }
         },
       );
+}
+
+class NekotonWebviewController {
+  final InAppWebViewController _inAppWebViewController;
+
+  NekotonWebviewController(this._inAppWebViewController);
+
+  void onDisconnected() => disconnectedCaller(_inAppWebViewController);
+
+  void onTransactionsFound() => transactionsFoundCaller(_inAppWebViewController);
+
+  void onContractStateChanged() => contractStateChangedCaller(_inAppWebViewController);
+
+  void onNetworkChanged() => networkChangedCaller(_inAppWebViewController);
+
+  void onPermissionsChanged() => permissionsChangedCaller(_inAppWebViewController);
+
+  void onLoggedOut() => loggedOutCaller(_inAppWebViewController);
 }

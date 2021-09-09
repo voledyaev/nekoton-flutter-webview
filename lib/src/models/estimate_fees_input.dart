@@ -12,7 +12,7 @@ class EstimateFeesInput with _$EstimateFeesInput {
     required String sender,
     required String recipient,
     required String amount,
-    required FunctionCall? payload,
+    FunctionCall? payload,
   }) = _EstimateFeesInput;
 
   factory EstimateFeesInput.fromJson(Map<String, dynamic> json) => _$EstimateFeesInputFromJson(json);
