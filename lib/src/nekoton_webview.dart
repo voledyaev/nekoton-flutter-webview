@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'callers/disconnected_caller.dart';
 
 import 'callers/contract_state_changed_caller.dart';
+import 'callers/disconnected_caller.dart';
 import 'callers/logged_out_caller.dart';
 import 'callers/network_changed_caller.dart';
 import 'callers/permissions_changed_caller.dart';

@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
-          appBar: AppBar(title: const Text("Nekoton WebView")),
+          appBar: AppBar(title: const Text("Nekoton Webview")),
           body: SafeArea(
             child: Column(
               children: <Widget>[
